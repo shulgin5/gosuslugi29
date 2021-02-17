@@ -10,7 +10,7 @@ import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 
-public class LoginTest {
+public class Main {
 
     public static void main(String... args){
         setup();
