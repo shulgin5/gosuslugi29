@@ -6,12 +6,11 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-public class MainPage {
-    public WebDriver driver;
+public class MainPage extends Page{
 
     public MainPage(WebDriver driver){
+        super(driver);
         PageFactory.initElements(driver, this);
-        this.driver = driver;
     }
 
     @FindBy(xpath = "//*[contains(@data-behavior, 'signIn')]")

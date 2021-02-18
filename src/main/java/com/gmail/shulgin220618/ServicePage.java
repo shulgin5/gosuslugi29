@@ -9,12 +9,11 @@ import org.openqa.selenium.support.PageFactory;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ServicePage {
-    public WebDriver driver;
+public class ServicePage extends Page{
 
     public ServicePage(WebDriver driver){
+        super(driver);
         PageFactory.initElements(driver, this);
-        this.driver = driver;
     }
 
     @FindBy(xpath = "//span[@class=\"modal-title-inner-text\"]/span")
@@ -53,7 +52,7 @@ public class ServicePage {
     }
 
     public List<String> getElectronicServices(){
-        List<String> links = new ArrayList<String>();
+        List<String> links = new ArrayList<>();
         for (WebElement subService : this.electronicServices){
             String dataTargetId = subService.getAttribute("data-targetid");
             String dataServiceId = subService.getAttribute("data-serviceid");
@@ -65,7 +64,7 @@ public class ServicePage {
     }
 
     public List<String> getNoElectronicServices(){
-        List<String> links = new ArrayList<String>();
+        List<String> links = new ArrayList<>();
         for (WebElement subService : this.noElectronicServices){
             String dataTargetId = subService.getAttribute("data-targetid");
             String dataServiceId = subService.getAttribute("data-serviceid");

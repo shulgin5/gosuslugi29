@@ -7,12 +7,11 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class LoginPage {
-    public WebDriver driver;
+public class LoginPage extends Page{
 
     public LoginPage(WebDriver driver){
+        super(driver);
         PageFactory.initElements(driver, this);
-        this.driver = driver;
     }
 
     @FindBy(xpath = "//*[@id=\"login\"]")

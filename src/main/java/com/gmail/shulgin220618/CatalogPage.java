@@ -11,12 +11,11 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.*;
 
-public class CatalogPage {
-    public WebDriver driver;
+public class CatalogPage extends Page{
 
     public CatalogPage(WebDriver driver){
+        super(driver);
         PageFactory.initElements(driver, this);
-        this.driver = driver;
     }
 
     public void clickLoadMore(){
@@ -40,7 +39,7 @@ public class CatalogPage {
 
     public List<String> getLinksCategories(){
         String link = "https://gosuslugi29.ru/pgu/categories/info.htm?id=";
-        List<String> links = new ArrayList<String>();
+        List<String> links = new ArrayList<>();
         List<WebElement> allCategories = getAllCategories();
         for (WebElement category : allCategories){
             links.add(link + category.getAttribute("data-objid"));

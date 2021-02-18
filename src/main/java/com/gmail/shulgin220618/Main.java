@@ -28,11 +28,12 @@ public class Main {
             CatalogPage catalogPage = new CatalogPage(driver);
             ServicesPage servicesPage = new ServicesPage(driver);
             ServicePage servicePage = new ServicePage(driver);
+            SubServicePage subServicePage = new SubServicePage(driver);
 
-            mainPage.clickEnterButton();
-            loginPage.inputLogin(ConfProperties.getProperty("login"));
-            loginPage.inputPassword(ConfProperties.getProperty("password"));
-            loginPage.buttonLoginClick();
+//            mainPage.clickEnterButton();
+//            loginPage.inputLogin(ConfProperties.getProperty("login"));
+//            loginPage.inputPassword(ConfProperties.getProperty("password"));
+//            loginPage.buttonLoginClick();
             mainPage.clickCatalogLink();
             catalogPage.clickLoadMore();
             List<String> allCategories = catalogPage.getLinksCategories();
@@ -41,12 +42,17 @@ public class Main {
             servicesPage.clickLoadMore();
             List<String> allServices = servicesPage.getLinksServices();
             driver.get(allServices.get(6));
-            System.out.println(servicePage.getServiceName());
-            System.out.println(servicePage.getOrganizationName());
-            System.out.println(servicePage.getReglamentLink());
-            System.out.println(servicePage.getElectronicServices().size());
-            System.out.println(servicePage.getNoElectronicServices().size());
-            System.out.println(allServices.size());
+            driver.get(servicePage.getElectronicServices().get(0));
+            subServicePage.clickButtonAllInfo();
+            System.out.println(subServicePage.getNameSubService());
+//            System.out.println(subServicePage.getButtonGet());
+            System.out.println(subServicePage.getReglamentLink());
+            System.out.println(subServicePage.getNameOrganization());
+            System.out.println(subServicePage.getReestrNumber());
+            System.out.println(subServicePage.getDateLastUpdate());
+
+
+
 
 
 //            int countElectron = 0;
