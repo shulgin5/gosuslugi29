@@ -17,29 +17,20 @@ public class SubServicePage extends Page {
         PageFactory.initElements(driver, this);
     }
 
-    @FindBy(xpath = "//a[@class='service-details-link']")
-    private WebElement buttonAllInfo;
+    @FindBy(xpath="//p[@class='attr-title' and contains(text(),'Способы подачи заявки:')]/following::ul[1]/li")
+    private List<WebElement> methodsSendApplication;
 
-    @FindBy(xpath = "//a[@class='service-organ-link']")
-    private WebElement nameOrganization;
+    @FindBy(xpath="//p[@class='attr-title' and contains(text(),'Способы получения результата:')]/following::ul[1]/li")
+    private List<WebElement> methodsGetAnswer;
 
-    @FindBy(xpath = "//p[@class='attr-title' and contains(text(),'Государственная услуга:')]/following::p[1]")
-    private WebElement nameSubService;
+    @FindBy(xpath="//p[@class='attr-title' and contains(text(),'Адрес предоставления в электронном виде:')]/following::p[1]")
+    private WebElement adderssService;
 
-    @FindBy(xpath = "//a[@class='reglament-link']")
-    private WebElement reglamentLink;
+    @FindBy(xpath = "//p[contains(text(),'Стоимость:')]/following::p[1]")
+    private WebElement cost;
 
-    @FindBy(xpath = "//a[@class='btn btn-primary btn-sm']")
-    private WebElement buttonGet;
-
-    @FindBy(xpath = "//p[@class='attr-title' and contains(text(),'Реестровый номер услуги:')]/following::p[1]")
-    private WebElement reestrNumber;
-
-    @FindBy(xpath = "//p[@class='attr-title' and contains(text(),'Идентификатор цели:')]/following::p[1]")
-    private WebElement idGoal;
-
-    @FindBy(xpath = "//div[@class='mobile-hidden']")
-    private WebElement dateLastUpdate;
+    @FindBy(xpath = "//span[contains(text(),'Стоимость и порядок оплаты')]/following::p[1]")
+    private WebElement costFree;
 
     @FindBy(xpath = "//p[@class='attr-title' and contains(text(),'Срок выполнения услуги:')]/following::p[1]")
     private WebElement deadlineComplete;
@@ -53,14 +44,73 @@ public class SubServicePage extends Page {
     @FindBy(xpath="//a[@id='dataGrpcategory']/ancestor::h3/following-sibling::div/ul/li")
     private List<WebElement> categoriesRecipients;
 
-    @FindBy(xpath="//p[@class='attr-title' and contains(text(),'Способы подачи заявки:')]/following::ul[1]/li")
-    private List<WebElement> methodsSendApplication;
+    @FindBy(xpath = "//p[@class='attr-title' and contains(text(),'Основание для оказания услуги:')]/following::p[1]")
+    private WebElement reasonProvisionService;
 
-    @FindBy(xpath="//p[@class='attr-title' and contains(text(),'Способы получения результата:')]/following::ul[1]/li")
-    private List<WebElement> methodsGetAnswer;
+    @FindBy(xpath="//p[@class='attr-title' and contains(text(),'Основание для приостановления/отказа:')]/following::ul[1]/li")
+    private List<WebElement> reasonsRefuse;
+
+    @FindBy(xpath="//p[@class='attr-title' and contains(text(),'Результат оказания услуги:')]/following::ul[1]/li")
+    private List<WebElement> result;
+
+    @FindBy(xpath = "//p[@class='attr-title' and contains(text(),'Государственная услуга:')]/following::p[1]")
+    private WebElement nameSubService;
+
+    @FindBy(xpath = "//p[@class='attr-title' and contains(text(),'Реестровый номер услуги:')]/following::p[1]")
+    private WebElement reestrNumber;
+
+    @FindBy(xpath = "//p[@class='attr-title' and contains(text(),'Идентификатор цели:')]/following::p[1]")
+    private WebElement idGoal;
+
+    @FindBy(xpath = "//div[@class='mobile-hidden']")
+    private WebElement dateLastUpdate;
+
+    @FindBy(xpath = "//a[@class='service-details-link']")
+    private WebElement buttonAllInfo;
+
+    @FindBy(xpath = "//a[@class='service-organ-link']")
+    private WebElement nameOrganization;
+
+    @FindBy(xpath = "//a[@class='reglament-link']")
+    private WebElement reglamentLink;
+
+    @FindBy(xpath = "//*[contains(text(),'Получить услугу')]")
+    private WebElement buttonGet;
 
     public String getNameOrganization(){
         return this.nameOrganization.getAttribute("innerText");
+    }
+
+    public String getAddressService(){
+        return this.adderssService.getAttribute("innerText");
+    }
+
+    public String getCost(){
+        return this.cost.getAttribute("innerText");
+    }
+
+    public String getCostFree(){
+        return this.costFree.getAttribute("innerText");
+    }
+
+    public String getReasonProvisionService(){
+        return this.reasonProvisionService.getAttribute("innerText");
+    }
+
+    public List<String> getReasonRefuse(){
+        List<String> reasons = new ArrayList<>();
+        for(WebElement reason : this.reasonsRefuse){
+            reasons.add(reason.getAttribute("innerText"));
+        }
+        return reasons;
+    }
+
+    public List<String> getResult(){
+        List<String> results = new ArrayList<>();
+        for(WebElement result : this.result){
+            results.add(result.getAttribute("innerText"));
+        }
+        return results;
     }
 
     public String getNameSubService(){
