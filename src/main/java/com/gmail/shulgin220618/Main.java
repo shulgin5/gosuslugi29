@@ -38,6 +38,14 @@ public class Main {
             catalogPage.clickLoadMore();
             List<String> allCategories = catalogPage.getLinksCategories();
 
+            driver.get(allCategories.get(0));
+            List<String> allServices = servicesPage.getLinksServices();
+            driver.get(allServices.get(6));
+            driver.get(servicePage.getElectronicServices().get(0));
+            subServicePage.clickButtonAllInfo();
+            for(String s : subServicePage.getCategoriesRecipients()){
+                System.out.println(s);
+            }
 
         }catch(Exception e) {
             System.out.println(e.getMessage());
